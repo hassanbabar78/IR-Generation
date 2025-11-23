@@ -237,7 +237,7 @@ class IRGenerator:
             self._validate_ast_structure(ast)
             
             if ast['type'] == 'program':
-                # First pass: collect function declarations
+                # First pass: collect function declaration
                 for node in ast['body']:
                     if node['type'] == 'function_declaration':
                         self._collect_function_declaration(node)
@@ -522,14 +522,14 @@ class IRGenerator:
         if len(provided_args) != len(expected_args):
             raise CompilerError(f"Function {func_name} expects {len(expected_args)} arguments, got {len(provided_args)}")
         
-        # Check argument types
+        # Check argument type
         for i, (arg, expected_param) in enumerate(zip(provided_args, expected_args)):
             arg_type = self.type_checker.get_expression_type(arg, self.symbol_table, self.current_scope)
             expected_type = self._map_type(expected_param['data_type'])
             if arg_type != expected_type:
                 raise CompilerError(f"Argument {i+1} type mismatch in call to {func_name}: expected {expected_type.value}, got {arg_type.value}")
         
-        # Push parameters
+        # Push parameter
         for arg in provided_args:
             arg_temp = self._generate_node(arg)
             self.instructions.append(TACInstruction(TACOp.PARAM, arg_temp))
@@ -818,7 +818,7 @@ class CompleteCompiler:
             print(f"Unexpected error: {e}")
             return False
 
-# Test function
+# Testing
 def test_complete_compiler():
     # Test case 1: Simple arithmetic and return
     sample_ast = {
