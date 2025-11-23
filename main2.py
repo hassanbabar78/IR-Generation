@@ -631,7 +631,6 @@ def test_ir_generator():
     try:
         instructions = generator.generate_ir(sample_ast)
         print("Generated TAC Instructions:")
-        print("=" * 40)
         generator.print_ir()
         return instructions
     except CompilerError as e:
